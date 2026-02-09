@@ -16,7 +16,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Magic 8 Ball */
+/* Ball */
 .ball {
   width: 260px;
   height: 260px;
@@ -32,23 +32,30 @@ body {
 /* Triangle window */
 .window {
   position: absolute;
-  width: 130px;
-  height: 110px;
+  width: 150px;
+  height: 130px;
   background: #1a2f8a;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  top: 80px;
-  left: 65px;
+  
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 14px;
-  text-align: center;
-  color: white;
-  font-size: 13px;
-  line-height: 1.2;
 }
 
-/* Input section */
+/* Text inside triangle */
+.answer-text {
+  width: 70%;
+  color: white;
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* Input */
 .container {
   text-align: center;
 }
@@ -81,7 +88,9 @@ button:hover {
 <body>
 
 <div class="ball">
-  <div class="window" id="answer">Ask a question</div>
+  <div class="window">
+    <div class="answer-text" id="answer">Ask a question</div>
+  </div>
 </div>
 
 <div class="container">
