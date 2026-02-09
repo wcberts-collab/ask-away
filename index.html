@@ -2,13 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Ask Away</title>
+<title>Magic 8 Ball</title>
 
 <style>
-body, input, button {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
 body {
   margin: 0;
   background: white;
@@ -17,40 +13,42 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Magic 8 Ball */
 .ball {
   width: 260px;
   height: 260px;
-  background: radial-gradient(circle at 30% 30%, #222, #000);
+  background: radial-gradient(circle at 30% 30%, #2b2b2b, #000);
   border-radius: 50%;
   position: relative;
-  box-shadow: inset -20px -20px 40px rgba(0,0,0,0.6),
-              inset 20px 20px 40px rgba(255,255,255,0.05),
-              0 20px 40px rgba(0,0,0,0.2);
+  box-shadow: inset -25px -25px 45px rgba(0,0,0,0.7),
+              inset 25px 25px 45px rgba(255,255,255,0.05),
+              0 20px 40px rgba(0,0,0,0.25);
   margin-bottom: 30px;
 }
 
 /* Triangle window */
 .window {
   position: absolute;
-  width: 120px;
-  height: 100px;
-  background: #1e3a8a;
+  width: 130px;
+  height: 110px;
+  background: #1a2f8a;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  top: 85px;
-  left: 70px;
+  top: 80px;
+  left: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
+  padding: 14px;
   text-align: center;
   color: white;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.2;
 }
 
-/* Input area */
+/* Input section */
 .container {
   text-align: center;
 }
@@ -59,7 +57,7 @@ input {
   width: 260px;
   padding: 10px;
   margin-top: 10px;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid #ccc;
   text-align: center;
 }
@@ -67,16 +65,15 @@ input {
 button {
   margin-top: 12px;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 6px;
   border: none;
-  background: #005BFB;
+  background: black;
   color: white;
   cursor: pointer;
-  transition: 0.25s;
 }
 
 button:hover {
-  transform: scale(1.05);
+  opacity: 0.85;
 }
 </style>
 </head>
@@ -84,31 +81,39 @@ button:hover {
 <body>
 
 <div class="ball">
-  <div class="window" id="answer">Ask Away</div>
+  <div class="window" id="answer">Ask a question</div>
 </div>
 
 <div class="container">
   <input id="q" placeholder="Type your question…" />
   <br>
-  <button onclick="answer()">Consult the universe</button>
+  <button onclick="answer()">Ask</button>
 </div>
 
 <script>
 const answers = [
-  "The outcome has already shifted.",
-  "They are listening.",
-  "Yes — but at a cost.",
-  "The stars do not align for this.",
-  "You are not meant to know yet.",
-  "Retrace your steps.",
-  "We have lost sight of the answer.",
-  "Embrace the void.",
-  "Do it for the plot.",
-  "Lore is endless.",
-  "Vibe check failed.",
-  "IYKYK.",
-  "Gaslight, gatekeep, girlboss.",
-  "The gods approve."
+  "It is certain.",
+  "It is decidedly so.",
+  "Without a doubt.",
+  "Yes definitely.",
+  "You may rely on it.",
+  "As I see it, yes.",
+  "Most likely.",
+  "Outlook good.",
+  "Yes.",
+  "Signs point to yes.",
+
+  "Reply hazy, try again.",
+  "Ask again later.",
+  "Better not tell you now.",
+  "Cannot predict now.",
+  "Concentrate and ask again.",
+
+  "Don't count on it.",
+  "My reply is no.",
+  "My sources say no.",
+  "Outlook not so good.",
+  "Very doubtful."
 ];
 
 function answer() {
@@ -116,7 +121,7 @@ function answer() {
   const box = document.getElementById("answer");
 
   if (!q) {
-    box.innerText = "Ask Away";
+    box.innerText = "Ask a question";
     return;
   }
 
