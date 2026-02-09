@@ -2,127 +2,110 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Magic 8 Ball</title>
-
+<title>Ask Away</title>
 <style>
-body {
-  margin: 0;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
-}
+  /* System font stack for macOS vibe */
+  body, input, button, #answer, h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                 Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  }
 
-/* Ball */
-.ball {
-  width: 260px;
-  height: 260px;
-  background: radial-gradient(circle at 30% 30%, #2b2b2b, #000);
-  border-radius: 50%;
-  position: relative;
-  box-shadow: inset -25px -25px 45px rgba(0,0,0,0.7),
-              inset 25px 25px 45px rgba(255,255,255,0.05),
-              0 20px 40px rgba(0,0,0,0.25);
-  margin-bottom: 30px;
-}
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background: #005BFB; /* Electric blue */
+    color: #fff;
+  }
 
-/* Triangle window */
-.window {
-  position: absolute;
-  width: 150px;
-  height: 130px;
-  background: #1a2f8a;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -30%);
+  .box {
+    max-width: 420px;
+    margin: auto;
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1); /* Slight frosted effect */
+    backdrop-filter: blur(6px);
+  }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  h3 {
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #fff;
+  }
 
-/* Text inside triangle */
-.answer-text {
-  width: 70%;
-  color: white;
-  font-size: 14px;
-  line-height: 1.25;
-  text-align: center;
-}
+  input {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+  }
 
-/* Input */
-.container {
-  text-align: center;
-}
+  button {
+    display: block;
+    margin: 14px auto 0;
+    width: 60%;
+    padding: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    backdrop-filter: blur(6px);
+    transition: background 0.3s, transform 0.2s;
+  }
 
-input {
-  width: 260px;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  text-align: center;
-}
+  button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
 
-button {
-  margin-top: 12px;
-  padding: 10px 20px;
-  border-radius: 6px;
-  border: none;
-  background: black;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.85;
-}
+  #answer {
+    margin-top: 24px;
+    font-size: 18px;
+    min-height: 28px;
+    font-style: italic;
+    color: #fff;
+  }
 </style>
 </head>
-
 <body>
 
-<div class="ball">
-  <div class="window">
-    <div class="answer-text" id="answer">Ask a question</div>
-  </div>
-</div>
+<div class="box">
+  <h3>Ask Away</h3>
 
-<div class="container">
   <input id="q" placeholder="Type your question…" />
-  <br>
-  <button onclick="answer()">Ask</button>
+
+  <button onclick="answer()">Consult the universe</button>
+
+  <div id="answer"></div>
 </div>
 
 <script>
 const answers = [
-  "It is certain.",
-  "It is decidedly so.",
-  "Without a doubt.",
-  "Yes definitely.",
-  "You may rely on it.",
-  "As I see it, yes.",
-  "Most likely.",
-  "Outlook good.",
-  "Yes.",
-  "Signs point to yes.",
+  // Ominous
+  "The outcome has already shifted.",
+  "They are listening.",
+  "Yes — but at a cost.",
+  "The stars do not align for this.",
+  "You are not meant to know yet.",
+  "Retrace your steps.",
+  "We have lost sight of the answer.",
+  "Embrace the void.",
 
-  "Reply hazy, try again.",
-  "Ask again later.",
-  "Better not tell you now.",
-  "Cannot predict now.",
-  "Concentrate and ask again.",
-
-  "Don't count on it.",
-  "My reply is no.",
-  "My sources say no.",
-  "Outlook not so good.",
-  "Very doubtful."
+  // Trendy / internet culture
+  "Do it for the plot.",
+  "Lore is endless.",
+  "Vibe check failed.",
+  "IYKYK.",
+  "Gaslight, gatekeep, girlboss.",
+  "The gods approve."
 ];
 
 function answer() {
@@ -130,7 +113,7 @@ function answer() {
   const box = document.getElementById("answer");
 
   if (!q) {
-    box.innerText = "Ask a question";
+    box.innerText = "A question must be typed.";
     return;
   }
 
